@@ -1,0 +1,5 @@
+# Autorotate Pano Skin
+# krpano 1.18
+
+xmltemplate=xml/default.xml
+xmltemplate_additional_file=xml/skin/autorotateskin.xml

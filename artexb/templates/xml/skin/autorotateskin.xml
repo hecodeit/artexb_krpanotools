@@ -1,0 +1,6 @@
+<krpano>
+	<!-- krpano 1.19 default buttons skin -->
+
+	<!-- default autorotate settings (disabled by default) -->
+	<autorotate enabled="true" waittime="1.0" accel="2.0" speed="8.0" horizon="0.0" tofov="90.0" />
+</krpano>

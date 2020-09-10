@@ -1,0 +1,31 @@
+# Virtual Tour Skin - Design 1.20
+# - Button bar
+# - Scene/pano title
+# - Previous/next scene buttons
+# - Show/hide skin buttons
+# - Hotspots style
+# - Scrolling thumbnails
+# - Bingmaps or Googlemaps plugin
+# - Tooltips
+# - Gyroscope plugin
+# - MobileVR/WebVR support
+# - Retina resolution images
+# - Different mobile layout
+# - Virtual Tour Editor compatible
+# krpano 1.20
+
+htmltemplate=html/embedpano_gallery.html
+
+xmltemplate=xml/gallery-vtour.xml
+xmltemplate_scene=xml/gallery_scenetemplate.xml
+xmltemplate_view=xml/gallery_viewtemplate.xml
+xmltemplate_additional_file=xml/skin/vtourskin.xml
+xmltemplate_additional_file=xml/skin/artexb_skin_white.svg
+xmltemplate_additional_file=xml/skin/159.svg
+xmltemplate_additional_file=xml/plugins/scrollarea.js
+xmltemplate_additional_file=xml/plugins/webvr.js
+xmltemplate_additional_file=xml/plugins/webvr.xml
+xmltemplate_additional_file=xml/plugins/webvr_vrcursor.png
+xmltemplate_additional_file=xml/plugins/webvr_laser.png
+xmltemplate_additional_file=xml/plugins/webvr_handcursor.png
+xmltemplate_additional_file=xml/plugins/webvr_light.png

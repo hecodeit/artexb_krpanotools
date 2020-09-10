@@ -1,0 +1,3 @@
+[submodule "artexb/templates/xml/artexb"]
+	path = artexb/templates/xml/artexb
+	url = git@github.com:hecodeit/artexb.git

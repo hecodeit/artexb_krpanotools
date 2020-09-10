@@ -1,0 +1,70 @@
+# Virtual Tour Skin - Design 1.20
+# - Button bar
+# - Scene/pano title
+# - Previous/next scene buttons
+# - Show/hide skin buttons
+# - Hotspots style
+# - Scrolling thumbnails
+# - Bingmaps or Googlemaps plugin
+# - Tooltips
+# - Gyroscope plugin
+# - MobileVR/WebVR support
+# - Retina resolution images
+# - Different mobile layout
+# - Virtual Tour Editor compatible
+# krpano 1.20
+
+htmltemplate=html/embedpano.html
+
+xmltemplate=xml/vtour.xml
+xmltemplate_scene=xml/vtour_scenetemplate.xml
+xmltemplate_view=xml/vtour_viewtemplate.xml
+xmltemplate_additional_file=xml/skin/vtourskin.xml
+xmltemplate_additional_file=xml/skin/artexb_skin_white.svg
+xmltemplate_additional_file=xml/skin/159.svg
+xmltemplate_additional_file=xml/plugins/scrollarea.js
+xmltemplate_additional_file=xml/plugins/videoplayer.js
+xmltemplate_additional_file=xml/plugins/soundinterface.js
+xmltemplate_additional_file=xml/plugins/gyro2.js
+xmltemplate_additional_file=xml/plugins/webvr.js
+xmltemplate_additional_file=xml/plugins/webvr.xml
+xmltemplate_additional_file=xml/plugins/webvr_vrcursor.png
+xmltemplate_additional_file=xml/plugins/webvr_laser.png
+xmltemplate_additional_file=xml/plugins/webvr_handcursor.png
+xmltemplate_additional_file=xml/plugins/webvr_light.png
+xmltemplate_additional_file=xml/plugins/combobox.xml
+xmltemplate_additional_file=xml/plugins/iphone_fullscreen_swipe.xml
+xmltemplate_additional_file=xml/skin/rotate_device.png
+xmltemplate_additional_file=xml/artexb/img/artist_anime.png
+xmltemplate_additional_file=xml/artexb/img/face.png
+xmltemplate_additional_file=xml/artexb/plugins/language.xml
+xmltemplate_additional_file=xml/artexb/plugins/views_likes.js
+xmltemplate_additional_file=xml/artexb/plugins/animated_hotspots.xml
+xmltemplate_additional_file=xml/artexb/plugins/popup.xml
+xmltemplate_additional_file=xml/artexb/plugins/intro_animation.xml
+xmltemplate_additional_file=xml/artexb/plugins/text_menu.xml
+xmltemplate_additional_file=xml/artexb/plugins/video_player.xml
+xmltemplate_additional_file=xml/artexb/plugins/animated_hotspots/audio.png
+xmltemplate_additional_file=xml/artexb/plugins/animated_hotspots/backward.png
+xmltemplate_additional_file=xml/artexb/plugins/animated_hotspots/forward.png
+xmltemplate_additional_file=xml/artexb/plugins/animated_hotspots/img.png
+xmltemplate_additional_file=xml/artexb/plugins/animated_hotspots/imgs.png
+xmltemplate_additional_file=xml/artexb/plugins/animated_hotspots/left.png
+xmltemplate_additional_file=xml/artexb/plugins/animated_hotspots/left_flat.png
+xmltemplate_additional_file=xml/artexb/plugins/animated_hotspots/left_flat_perspective.png
+xmltemplate_additional_file=xml/artexb/plugins/animated_hotspots/pano.png
+xmltemplate_additional_file=xml/artexb/plugins/animated_hotspots/right.png
+xmltemplate_additional_file=xml/artexb/plugins/animated_hotspots/right_flat.png
+xmltemplate_additional_file=xml/artexb/plugins/animated_hotspots/right_flat_perspective.png
+xmltemplate_additional_file=xml/artexb/plugins/animated_hotspots/text.png
+xmltemplate_additional_file=xml/artexb/plugins/animated_hotspots/video.png
+xmltemplate_additional_file=xml/artexb/plugins/animated_hotspots/web.png
+xmltemplate_additional_file=xml/artexb/skin/159.svg
+xmltemplate_additional_file=xml/artexb/skin/artexb_design.xml
+xmltemplate_additional_file=xml/artexb/skin/artexb_skin.svg
+xmltemplate_additional_file=xml/artexb/skin/artexb_skin_custom.svg
+xmltemplate_additional_file=xml/artexb/skin/artexb_skin_custom_white.svg
+xmltemplate_additional_file=xml/artexb/skin/artexb_skin_white.svg
+xmltemplate_additional_file=xml/artexb/skin/logo.svg
+xmltemplate_additional_file=xml/artexb/skin/logo_white.svg
+xmltemplate_additional_file=xml/artexb/skin/qr.jpg
