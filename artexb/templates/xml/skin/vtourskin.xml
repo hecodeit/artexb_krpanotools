@@ -1,6 +1,6 @@
 ﻿<krpano>
 
-	<!-- krpano 1.20.7 - Virtual Tour Skin -->
+	<!-- krpano 1.20.8 - Virtual Tour Skin -->
 
 
 	<!-- skin settings (can be overridden in the tour.xml) -->
@@ -63,7 +63,7 @@
 	<!-- save the url path of this xml file (the url value will be adjusted during xml parsing) -->
 	<vtourskinxmlpath url="./" />
 
-	<!-- iPhone X safe-area support: use the horizontal safe-area only -->
+	<!-- iPhone X safe-area support: use the horizontal safe-area only -->	
 	<display safearea="h-only" />
 
 	<!-- mouse / touch / keyboard(button) control settings - https://krpano.com/docu/xml/#control -->
@@ -98,7 +98,7 @@
 
 	<!-- VR support - https://krpano.com/plugins/webvr/ -->
 	<include url="%VIEWER%/plugins/webvr.xml" devices="html5" />
-
+	
 	<!-- overwrite some settings from the webvr.xml for the skin integration -->
 	<plugin name="webvr" keep="true" devices="html5.and.webgl"
 	        url="calc:skin_settings.webvr == true ? '%VIEWER%/plugins/webvr.js' : null"
@@ -106,7 +106,7 @@
 	        onentervr="skin_showloading(false); webvr_onentervr(); skin_webvr_setup(); skin_reloadscene_webvr();"
 	        onexitvr="webvr_onexitvr(); skin_webvr_setup(); skin_reloadscene_webvr();"
 	        />
-
+	
 	<!-- webvr button style (adjust to match skin style) -->
 	<style name="webvr_button_style"
 	       bgroundedge="calc:skin_settings.design_bgroundedge"
@@ -115,7 +115,7 @@
 	       bgshadow="get:skin_settings.design_bgshadow"
 	       css="calc:skin_settings.design_text_css + ' font-size:' + 20*webvr_setup_scale*webvr_button_scale + 'px;'"
 	       />
-
+	
 	<!-- show a 'rotate the device' info when the mobile device is in portrait orientation in VR mode -->
 	<layer name="webvr_rotate_to_landscape_request" keep="true" vr="true" devices="mobile"
 	       url="rotate_device.png" scale="0.5"
@@ -123,41 +123,41 @@
 	       autoalpha="true" alpha="0.0"
 	       enabled="false"
 	       />
-
+	
 	<events name="skin_webvr_and_gyro_events" keep="true" devices="html5"
 	        onxmlcomplete="skin_set_webvr_or_gyro_startup_view()"
 	        onresize.mobile="skin_webvr_act_as_gyro_in_portrait_mode();"
 	        onloadcomplete="delayedcall(0.5, if(webvr.isenabled AND scene.count GT 1 AND skin_settings.webvr_prev_next_hotspots, set(hotspot[skin_webvr_prev_scene].visible,true); set(hotspot[skin_webvr_next_scene].visible,true); ); );"
 	        onviewchange=""
 	        />
-
+	
 	<action name="skin_webvr_onavailable" scope="local">
 		if(webvr.isvrbrowser,
 			<!-- show a special enter VR screen for Gear VR browsers (Oculus Browser or Samsung Internet VR) -->
-			set(layer[webvr_enterbutton],
-				align=center, y=0, padding='10 20',
+			set(layer[webvr_enterbutton], 
+				align=center, y=0, padding='10 20', 
 				css=calc(skin_settings.design_text_css + ' font-size:20px;text-align:center;'),
-				html=calc((global.title ? '[i]'+global.title+'[/i][br]' : '') + '[span style="font-size:40px"]Enter VR[span]'),
+				html=calc((global.title ? '[i]'+global.title+'[/i][br]' : '') + '[span style="font-size:40px"]Enter VR[span]'), 
 			);
 			skin_hideskin(instant);
 		  ,
 			<!-- remove the enter vr button from the webvr.xml -->
 			removelayer(webvr_enterbutton);
 		);
-
+				
 		<!-- update the skin buttons to add the skin vr button -->
 		skin_arrange_buttons();
-
+			
 		<!-- call the original onavailable event from the webvr.xml -->
 		webvr_onavailable();
 	</action>
-
+	
 	<action name="skin_set_webvr_or_gyro_startup_view">
 		if( (webvr.isenabled == true AND skin_settings.webvr_keeplookingdirection == false) OR (!webvr.isenabled AND plugin[skin_gyro].enabled == true AND skin_settings.gyro_keeplookingdirection == false),
 			skin_lookat( get(xml.view.hlookat) );
 		);
 	</action>
-
+	
 	<action name="skin_webvr_setup">
 		if(webvr.isenabled,
 			copy(skin_settings.loadscene_flags_backup, skin_settings.loadscene_flags);
@@ -176,7 +176,7 @@
 			set(events[skin_webvr_and_gyro_events].onviewchange, null);
 		);
 	</action>
-
+	
 	<action name="skin_webvr_act_as_gyro_in_portrait_mode" scope="local" args="setupcall">
 		if(device.mobile AND webvr.isenabled,
 			div(aspect, stagewidth, stageheight);
@@ -201,12 +201,12 @@
 			set(lastaspect, 0);
 		);
 	</action>
-
+	
 	<!-- VR scene switching hotspots -->
 	<style name="skin_webvr_menu_style" torigin="view" depth="1000" scale="0.625" distorted="true" ath="0" atv="45" alpha="0.5" />
 	<hotspot name="skin_webvr_prev_scene" keep="true" style="skin_base|skin_webvr_menu_style" crop="0|64|64|64"  ox="-88" onover="tween(scale,0.750);" onout="tween(scale,0.625);" vr_timeout="750" onclick="skin_nextscene_loop(-1);" visible="false" devices="html5.and.webgl" />
 	<hotspot name="skin_webvr_next_scene" keep="true" style="skin_base|skin_webvr_menu_style" crop="64|64|64|64" ox="+88" onover="tween(scale,0.750);" onout="tween(scale,0.625);" vr_timeout="750" onclick="skin_nextscene_loop(+1);" visible="false" devices="html5.and.webgl" />
-
+	
 	<!-- floating/following VR hotspots -->
 	<action name="skin_webvr_menu_following" type="Javascript" devices="html5"><![CDATA[
 		var hs1 = krpano.get("hotspot[skin_webvr_prev_scene]");
@@ -262,20 +262,20 @@
 	       onclick="skin_hotspotstyle_click();"
 	       depth="1000"
 	       scale="0.5"
-	       onover="tween(scale,0.55);"
-	       onout="tween(scale,0.5);"
-	       onloaded="skin_hotspotstyle_setup();"
+	       onover.addevent="tween(scale,0.55);"
+	       onout.addevent="tween(scale,0.5);"
+	       onloaded.addevent="skin_hotspotstyle_setup();"
 	       />
 
 	<action name="skin_hotspotstyle_setup" scope="local">
-		if(caller.linkedscene AND skin_settings.tooltips_hotspots,
+		if(isvalue(caller.linkedscene) AND skin_settings.tooltips_hotspots,
 			copy(caller.tooltip, scene[get(caller.linkedscene)].title);
 			caller.loadstyle(skin_tooltips);
 		);
 	</action>
 
 	<action name="skin_hotspotstyle_click" scope="local">
-		if(caller.linkedscene,
+		if(isvalue(caller.linkedscene),
 			copy(hs_linkedscene, caller.linkedscene);
 			if(caller.linkedscene_lookat, txtsplit(caller.linkedscene_lookat, ',', hs_lookat_h, hs_lookat_v, hs_lookat_fov); );
 			set(caller.enabled, false);
@@ -287,15 +287,15 @@
 			);
 		);
 	</action>
-
+	
 
 	<!-- skin_tooltip - style for the thumb, hotspot and mapspot tooltips -->
 	<style name="skin_tooltips"
-	       onover.mouse="copy(layer[skin_tooltip].html, tooltip);
+	       onover.addevent.mouse="copy(layer[skin_tooltip].html, tooltip);
 	                     set(layer[skin_tooltip].visible, calc(webvr.isenabled ? false : true));
 	                     tween(layer[skin_tooltip].alpha, 1.0, 0.1);
 	                     asyncloop(hovering, copy(layer[skin_tooltip].x,mouse.stagex); copy(layer[skin_tooltip].y,mouse.stagey); );"
-	       onout.mouse="tween(layer[skin_tooltip].alpha, 0.0, 0.1, default, set(layer[skin_tooltip].visible,false), copy(layer[skin_tooltip].x,mouse.stagex); copy(layer[skin_tooltip].y,mouse.stagey); );"
+	       onout.addevent.mouse="tween(layer[skin_tooltip].alpha, 0.0, 0.1, default, set(layer[skin_tooltip].visible,false), copy(layer[skin_tooltip].x,mouse.stagex); copy(layer[skin_tooltip].y,mouse.stagey); );"
 	       />
 
 
@@ -443,7 +443,7 @@
 
 		set(layer[skin_layer].visible, true);
 	</action>
-
+	
 
 	<action name="skin_load_maps_plugin">
 		if (!layer[skin_map].url,
@@ -464,6 +464,20 @@
 
 
 	<action name="skin_addthumbs" scope="local">
+		
+		<!-- build a global array of visible scene thumbnails -->
+		def(global.thumbarray, array);
+		set(thumbcount, 0);
+		for(set(i,0), i LT scene.count, inc(i),
+			if(isvalue(scene[get(i)].thumburl) AND scene[get(i)].skipthumb != true,
+				<!-- link thumbarray[i1] to scene[i2] -->
+				set(thumbarray[get(thumbcount)], get(scene[get(i)]));
+				set(scene[get(i)].sceneindex, get(i));
+				set(scene[get(i)].thumbindex, get(thumbcount));
+				inc(thumbcount);
+			);
+		);
+		
 		if(skin_settings.thumbs == false,
 			set(layer[skin_btn_thumbs].visible,false);
 		  ,
@@ -474,25 +488,28 @@
 
 			calc(thumbxoffset, thumbwidth + thumbpadding);
 			calc(thumbxcenter, thumbxoffset * 0.5);
-			calc(thumbbarwidth, thumbxoffset * scene.count + thumbpadding);
+			calc(thumbbarwidth, thumbxoffset * thumbcount + thumbpadding);
 			calc(thumbbarheight, thumbpadding + thumbheight + thumbpadding);
 
 			if(skin_settings.thumbs_scrollindicator,
 				copy(layer[skin_thumbs_scrollindicator].y, thumbbarheight);
 				add(thumbbarheight, layer[skin_thumbs_scrollindicator].height);
 			);
-
+			
 			set(layer[skin_thumbs], width=get(thumbbarwidth), height=get(thumbbarheight) );
 
 			calc(layer[skin_thumbs_scrollleft].y, thumbbarheight * 0.5);
 			calc(layer[skin_thumbs_scrollright].y, thumbbarheight * 0.5);
 
-			for(set(i,0), i LT scene.count, inc(i),
+			for(set(i,0), i LT thumbcount, inc(i),
+			
+				copy(currentscene, thumbarray[get(i)]);
+
 				calc(thumbname, 'skin_thumb_' + i);
 				addlayer(get(thumbname));
 
 				set(layer[get(thumbname)],
-					url=get(scene[get(i)].thumburl),
+					url=get(currentscene.thumburl),
 					keep=true,
 					parent='skin_thumbs',
 					align='lefttop',
@@ -501,28 +518,29 @@
 					height=get(thumbheight),
 					x=calc(thumbpadding + i*thumbxoffset),
 					y=get(thumbpadding),
-					linkedscene=get(scene[get(i)].name),
+					linkedscene=get(currentscene.name),
 					onclick='copy(layer[skin_thumbborder].parent, name); skin_loadscene(get(linkedscene),get(skin_settings.loadscene_blend));'
 				);
-
-				set(scene[get(i)],
+					
+				set(currentscene, 
 					thumbx=calc(thumbpadding + i*thumbxoffset + thumbxcenter),
 					thumby=get(thumbpadding)
 				);
-
+					
 				if(skin_settings.tooltips_thumbs,
-					set(layer[get(thumbname)].tooltip, get(scene[get(i)].title) );
+					set(layer[get(thumbname)].tooltip, get(currentscene.title) );
 					layer[get(thumbname)].loadstyle(skin_tooltips);
 				);
+					
 				if(skin_settings.thumbs_text,
 					calc(thumbtext, 'skin_thumbtext_' + i);
 					addlayer(get(thumbtext));
 					layer[get(thumbtext)].loadstyle(skin_thumbtext_style);
-					set(layer[get(thumbtext)], keep=true, parent=get(thumbname), html=get(scene[get(i)].title) );
+					set(layer[get(thumbtext)], keep=true, parent=get(thumbname), html=get(currentscene.title) );
 				);
-			 );
-
-			if(scene.count == 1,
+			);
+			
+			if(thumbcount == 1,
 				set(layer[skin_thumbs].align, 'lefttop');
 			);
 		);
@@ -576,8 +594,8 @@
 			);
 		);
 	</action>
-
-
+	
+	
 	<action name="skin_lookat" scope="local" args="h, v, fov">
 		if(webvr.isenabled,
 			<!-- adjust the VR prev/next hotspots for the view change -->
@@ -748,8 +766,8 @@
 				set(layer[skin_btn_next_fs].visible, false);
 			);
 
-			calc(parentname, 'skin_thumb_' + scene[get(xml.scene)].index);
-			if(layer[get(parentname)],
+			calc(parentname, 'skin_thumb_' + scene[get(xml.scene)].thumbindex);
+			if(scene[get(xml.scene)].thumburl AND scene[get(xml.scene)].skipthumb != true AND layer[get(parentname)],
 				set(layer[skin_thumbborder], parent=get(parentname), visible=true);
 			  ,
 				set(layer[skin_thumbborder].visible, false);
@@ -765,7 +783,7 @@
 			  ,
 				set(layer[skin_btn_gyro].visible, false)
 			);
-
+			
 			skin_update_bouncinglimits_control();
 
 			if(scene[get(xml.scene)].isvideopano AND plugin[video] !== null,
@@ -775,7 +793,7 @@
 			);
 		);
 	</action>
-
+	
 	<action name="skin_update_bouncinglimits_control" scope="local">
 		if(view.vlookatrange LT 180 AND image.type != 'flat',
 			if(skin_settings.backup_control_bouncinglimits === null,
@@ -800,19 +818,42 @@
 
 
 	<action name="skin_nextscene" scope="local" args="indexadd">
-		add(newsceneindex, scene[get(xml.scene)].index, indexadd);
-		if(newsceneindex GE 0 AND newsceneindex LT scene.count,
-			skin_loadscene(get(newsceneindex), calc(indexadd LT 0 ? skin_settings.loadscene_blend_prev : skin_settings.loadscene_blend_next));
+		set(newscenename, null);
+		if(isset(scene[get(xml.scene)].thumbindex),
+			add(newsceneindex, scene[get(xml.scene)].thumbindex, indexadd);
+			if(newsceneindex GE 0 AND newsceneindex LT thumbarray.length,
+				set(newscenename, get(thumbarray[get(newsceneindex)].name));
+			);
+		  ,
+			add(newsceneindex, scene[get(xml.scene)].index, indexadd);
+			if(newsceneindex GE 0 AND newsceneindex LT scene.count,
+				set(newscenename, get(scene[get(newsceneindex)].name));
+			);
+		);
+		if(newscenename != null,
+			skin_loadscene(get(newscenename), calc(indexadd LT 0 ? skin_settings.loadscene_blend_prev : skin_settings.loadscene_blend_next));
 		);
 	</action>
 
 
 	<action name="skin_nextscene_loop" scope="local" args="indexadd">
-		add(newsceneindex, scene[get(xml.scene)].index, indexadd);
-		sub(lastsceneindex, scene.count, 1);
-		if(newsceneindex LT 0, copy(newsceneindex,lastsceneindex));
-		if(newsceneindex GT lastsceneindex, set(newsceneindex,0));
-		skin_loadscene(get(newsceneindex), calc(indexadd LT 0 ? skin_settings.loadscene_blend_prev : skin_settings.loadscene_blend_next));
+		set(newscenename, null);
+		if(isset(scene[get(xml.scene)].thumbindex),
+			sub(lastsceneindex, thumbarray.length, 1);
+			add(newsceneindex, scene[get(xml.scene)].thumbindex, indexadd);
+			if(newsceneindex LT 0, copy(newsceneindex,lastsceneindex));
+			if(newsceneindex GT lastsceneindex, set(newsceneindex,0));
+			set(newscenename, get(thumbarray[get(newsceneindex)].name));
+		  ,
+			add(newsceneindex, scene[get(xml.scene)].index, indexadd);
+			sub(lastsceneindex, scene.count, 1);
+			if(newsceneindex LT 0, copy(newsceneindex,lastsceneindex));
+			if(newsceneindex GT lastsceneindex, set(newsceneindex,0));
+			set(newscenename, get(scene[get(newsceneindex)].name));
+		);
+		if(newscenename != null,
+			skin_loadscene(get(newscenename), calc(indexadd LT 0 ? skin_settings.loadscene_blend_prev : skin_settings.loadscene_blend_next));
+		);
 	</action>
 
 
@@ -822,7 +863,13 @@
 			set(hotspot[skin_webvr_next_scene].visible, false);
 		);
 
-		calc(layer[skin_thumbborder].parent, 'skin_thumb_' + scene[get(newscenenameorindex)].index);
+		calc(parentname, 'skin_thumb_' + scene[get(newscenenameorindex)].thumbindex);
+		if(scene[get(newscenenameorindex)].thumburl AND scene[get(newscenenameorindex)].skipthumb != true AND layer[get(parentname)],
+			set(layer[skin_thumbborder], parent=get(parentname), visible=true);
+		  ,
+			set(layer[skin_thumbborder].visible, false);
+		);
+		
 		layer[skin_thumbs].scrolltocenter(get(scene[get(newscenenameorindex)].thumbx), get(scene[get(newscenenameorindex)].thumby));
 		loadscene(get(scene[get(newscenenameorindex)].name), null, get(skin_settings.loadscene_flags), get(blendmode));
 	</action>
@@ -872,7 +919,7 @@
 
 	<action name="skin_hideskin" scope="local" args="hidetimemode">
 		calc(hidetime, hidetimemode == 'instant' ? 0.0 : 0.5);
-
+		
 		callwith(layer[skin_scroll_window],   skin_calc_opened_closed() );
 		callwith(layer[skin_splitter_bottom], skin_calc_opened_closed() );
 		callwith(layer[skin_control_bar],     skin_calc_opened_closed() );
@@ -1117,8 +1164,8 @@
 			delayedcall(autohide_pp, 2.0, set(layer[skin_video_playpause].state,'hidden'); tween(layer[skin_video_playpause].alpha, 0.0); );
 		);
 	</action>
-
-
+	
+	
 	<!-- autotour/autoplay support -->
 	<autorotate enabled="calc:skin_settings.autotour == true"
 	            waittime="5.0"
@@ -1127,20 +1174,20 @@
 	            tofov="80"
 	            oneroundrange="360"
 	            />
-
+	
 	<events name="skin_autotour" keep="true"
 		onautorotatestart="if(skin_settings.autotour, skin_autotour_start(); );"
 		onautorotatestop="if(skin_settings.autotour, skin_autotour_stop(); );"
 		onautorotateoneround="if(skin_settings.autotour, skin_nextscene_loop(+1); );"
 		/>
-
+	
 	<action name="skin_autotour_start" scope="PRIVATE:skin_autotour">
 		copy(loadscene_flags_backup, global.skin_settings.loadscene_flags);
 		set(global.skin_settings.loadscene_flags, MERGE|KEEPVIEW|KEEPMOVING|PRELOAD);
 		copy(loadscene_blend_next_backup, global.skin_settings.loadscene_blend_next);
 		set(global.skin_settings.loadscene_blend_next, SLIDEBLEND(2.0, 0, 0.75, linear) );
 	</action>
-
+	
 	<action name="skin_autotour_stop" scope="PRIVATE:skin_autotour">
 		copy(global.skin_settings.loadscene_flags, loadscene_flags_backup);
 		copy(global.skin_settings.loadscene_blend_next, loadscene_blend_next_backup);
@@ -1151,7 +1198,7 @@
 		switch(control.touch, moveto, drag, follow);
 		skin_changecontrolmode_updatecaption();
 	</action>
-
+		
 	<action name="skin_changecontrolmode_updatecaption" autorun="onstart">
 		calc(contextmenu.item[cc].caption, 'Change Controlmode (' + control.mouse + ')');
 	</action>
@@ -1210,8 +1257,8 @@
 		tween(view.hlookat, calc(view.hlookat + 100.0 + 45.0*random), distance(100,0.8));
 		skin_deeplinking_update_url(1.0);
 	</action>
-
-
+	
+	
 	<action name="skin_followmouse_init" scope="private:skinfollowmouse" autorun="onstart" devices="desktop.and.no-touch">
 		if(global.skin_settings.followmousecontrol,
 			set(followspeed, 0.05);
@@ -1226,7 +1273,7 @@
 			set(global.events[skin_followmouse].onmouseup, scope(private:skinfollowmouse, delayedcall(followmouse_reenable, 1.0, tween(followfactor,1.0,3.0) ); ); );
 		  );
 	</action>
-
+	
 	<action name="skin_followmouse_onviewchange" scope="private:skinfollowmouse">
 		if(global.mouse.x != 0 AND global.mouse.y != 0,
 			Math.tan(zoomscale, calc(global.view.vfov * 0.5 * Math.PI / 180.0));
@@ -1240,15 +1287,15 @@
 			copy(global.view.rx, track_rx);
 		);
 	</action>
-
-
-
+	
+	
+	
 	<!-- A helper script for getting into fullscreen mode on the iPhone. -->
-
+	
 	<events name="iphone_fullscreen_swipe" keep="true" devices="iphone"
 			oniphonefullscreen="iphone_fullscreen_swipe();"
 			/>
-
+		
 	<action name="iphone_fullscreen_swipe" scope="localonly">
 		if(global.display.iphonefullscreen GT 0,
 			if(!global.layer[iphone_fullscreen_info],
@@ -1264,6 +1311,6 @@
 			removelayer('iphone_fullscreen_info');
 		);
 	</action>
-
+	
 
 </krpano>
