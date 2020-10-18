@@ -16,13 +16,17 @@
 
 htmltemplate=html/embedpano_gallery.html
 
-xmltemplate=xml/gallery-vtour.xml
-xmltemplate_scene=xml/gallery_scenetemplate.xml
-xmltemplate_view=xml/gallery_viewtemplate.xml
-xmltemplate_additional_file=xml/skin/vtourskin.xml
-xmltemplate_additional_file=xml/skin/galleryskin.xml
-xmltemplate_additional_file=xml/skin/artexb_skin_white.svg
-xmltemplate_additional_file=xml/skin/159.svg
+xmltemplate=xml/video-gallery-vtour.xml
+xmltemplate_scene=xml/video_gallery_scenetemplate.xml
+xmltemplate_additional_file=xml/skin/gallery-vtourskin.xml
+
+xmltemplate_additional_file=xml/artexb/skin/artexb_skin_white.svg
+xmltemplate_additional_file=xml/artexb/plugins/lottie_light.min.js
+xmltemplate_additional_file=xml/artexb/plugins/lottie.xml
+xmltemplate_additional_file=xml/artexb/plugins/animated_icon/27-loading.json
+xmltemplate_additional_file=xml/artexb/plugins/animated_icon/video_play.json
+
+xmltemplate_additional_file=xml/plugins/videoplayer.js
 xmltemplate_additional_file=xml/plugins/scrollarea.js
 xmltemplate_additional_file=xml/plugins/webvr.js
 xmltemplate_additional_file=xml/plugins/webvr.xml
@@ -30,7 +34,3 @@ xmltemplate_additional_file=xml/plugins/webvr_vrcursor.png
 xmltemplate_additional_file=xml/plugins/webvr_laser.png
 xmltemplate_additional_file=xml/plugins/webvr_handcursor.png
 xmltemplate_additional_file=xml/plugins/webvr_light.png
-xmltemplate_additional_file=xml/artexb/skin/artexb_skin_white.svg
-xmltemplate_additional_file=xml/artexb/plugins/lottie_light.min.js
-xmltemplate_additional_file=xml/artexb/plugins/lottie.xml
-xmltemplate_additional_file=xml/artexb/plugins/animated_icon/27-loading.json

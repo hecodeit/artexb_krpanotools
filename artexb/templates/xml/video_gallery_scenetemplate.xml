@@ -1,0 +1,16 @@
+﻿
+	<scene name="scene_[BASENAME]" title="[NAME]" onstart="skin_update_scene_infos();"[SCENEPARAMETERS][THUMB][GPS][DEVICE]>
+
+		<layer name="video"
+                     url.html5="plugins/videoplayer.js"
+                     videourl="videos/01.mp4"
+                     posterurl="videos/01.png"
+                     align="center" x="0" y="0"
+                     pausedonstart="true"
+                     loop="false"
+			bgroundedge="10"
+			onclick="togglepause();"
+			onloaded="videoplayer_plugin_ready(get(name));"
+              />
+
+	</scene>

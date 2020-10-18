@@ -1,0 +1,107 @@
+﻿<krpano version="1.20.7">
+
+    <include url="skin/vtourskin.xml" />
+	<include url="skin/galleryskin.xml" />
+    <include url="artexb/plugins/lottie.xml" />
+
+    <!-- startup action - load the first scene -->
+    <action name="startup" autorun="onstart">
+        if(startscene === null OR !scene[get(startscene)], copy(startscene,scene[0].name); );
+        loadscene(get(startscene), null, MERGE);
+        if(startactions !== null, startactions() );
+    </action>
+
+    <layer name="video_loadingtext"
+           keep="true"
+           zorder="2"
+           type="container"
+           width="64"
+           height="64"
+           scale="1"
+           align="center"
+           visible="false"
+             bg="false"
+             enabled="false"
+             parent="skin_layer">
+        <layer name="lottie_video_loadingtext"
+                type="container"
+                width="100%"
+                height="100%"
+                keep="true"
+                align="center"
+                iconurl="artexb/plugins/animated_icon/27-loading.json"
+                onloaded="load_lottie('lottie_video_loadingtext', get(iconurl));"
+                />
+    </layer>
+    <layer name="video_play_btn"
+        keep="true"
+             zorder="2"
+             type="container"
+            width="48"
+            height="48"
+            scale="1"
+            align="center"
+            visible="false"
+            bg="false"
+            enabled="false"
+            parent="skin_layer"
+            >
+
+        <layer name="lottie_video_play_btn"
+                type="container"
+                width="100%"
+                height="100%"
+                keep="true"
+                align="center"
+                iconurl="artexb/plugins/animated_icon/video_play.json"
+                onloaded="load_lottie('lottie_video_play_btn', get(iconurl));"
+                />
+    </layer>
+
+    <action name="videoplayer_plugin_ready">
+        if(layer[%1],
+            set(layer[%1].onvideoready,
+                    videoplayer_plugin_resize(%1);
+                    tween(alpha,1,0.5,default);
+                    set(layer[video_loadingtext].visible, false);
+                    set(layer[video_play_btn].visible, true);
+               );
+            set(layer[%1].onvideoplay,
+                    set(layer[video_play_btn].visible, false);
+                    set(layer[video_loadingtext].visible, true);
+                    delayedcall(1, check_loading(%1););
+               );
+            set(layer[%1].onvideopaused,
+                    set(layer[video_play_btn].visible, true);
+                    set(layer[video_loadingtext].visible, false);
+               );
+            );
+    </action>
+
+    <action name="check_loading">
+        if(get(layer[%1].time) LT 3,
+            delayedcall(1, check_loading(%1)),
+            set(layer[video_loadingtext].visible, false);
+        );
+    </action>
+
+    <action name="videoplayer_plugin_resize">
+        <!-- use 90% width or height of available screen size -->
+        div(aspect, layer[%1].imagewidth, layer[%1].imageheight);
+        mul(new_videowidth, stagewidth, 0.90);
+        div(new_videoheight, new_videowidth, aspect);
+        mul(max_videoheight, stageheight, 0.90);
+        if(new_videoheight GT max_videoheight,
+            copy(new_videoheight, max_videoheight);
+            mul(new_videowidth, new_videoheight, aspect);
+          );
+        roundval(new_videowidth);
+        roundval(new_videoheight);
+        copy(layer[%1].width, new_videowidth);
+        copy(layer[%1].height, new_videoheight);
+    </action>
+
+
+    [SCENES]
+
+</krpano>

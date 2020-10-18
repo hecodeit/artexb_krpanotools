@@ -79,7 +79,7 @@
 
 
 	<!-- save the url path of this xml file (the url value will be adjusted during xml parsing) -->
-	<vtourskinxmlpath url="./" />
+	<vtourskinxmlpath url="../artexb/skin/" />
 
 	<!-- iPhone X safe-area support: use the horizontal safe-area only -->
 	<display safearea="h-only" />
@@ -376,7 +376,6 @@
 			</layer>
 		</layer>
 
-		<layer name="skin_loadingtext" type="image" url="%VIEWER%/skin/159.svg" width="64" height="64" scale="0.5" align="center" x="5" y="-5" html="get:skin_settings.loadingtext" visible="false" bg="false" enabled="false" css="calc:skin_settings.design_text_css + ' text-align:center; font-style:italic; font-size:22px;'" textshadow="get:skin_settings.design_text_shadow" />
 		<layer name="skin_buttonglow"  style="skin_base" crop="64|384|64|64" align="center" x="0" y="1" scale="1.0" alpha="0.0" visible="false" enabled="false" />
 		<layer name="skin_thumbborder" type="container" x="get:skin_settings.design_thumbborder_padding" y="get:skin_settings.design_thumbborder_padding" width="calc:skin_settings.thumbs_width - 2*skin_settings.design_thumbborder_padding" height="calc:skin_settings.thumbs_height - 2*skin_settings.design_thumbborder_padding" visible="false" enabled="false" align="lefttop" bgborder="get:skin_settings.design_thumbborder_bgborder" bgroundedge="get:skin_settings.design_thumbborder_bgroundedge" />
 	</layer>

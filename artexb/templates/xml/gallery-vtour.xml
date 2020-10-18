@@ -1,6 +1,8 @@
 ﻿<krpano version="1.20.7">
 
-	<include url="skin/gallery-vtourskin.xml" />
+	<include url="artexb/plugins/lottie.xml" />
+	<include url="skin/vtourskin.xml" />
+	<include url="skin/galleryskin.xml" />
 
 	<!-- startup action - load the first scene -->
 	<action name="startup" autorun="onstart">

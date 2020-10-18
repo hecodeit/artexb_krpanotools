@@ -1,0 +1,132 @@
+<krpano>
+  <skin_settings gyro="false"
+	               webvr="false"
+	               layout_maxwidth="100%"
+	               controlbar_width="100%"
+	               controlbar_offset="0"
+	               design_skin_images="artexb_skin_white.svg"
+	               design_bgcolor="0x000000"
+	               />
+
+  <vtourskinxmlpath url="../artexb/skin/" />
+
+  <events onxmlcomplete="jscall(
+     document.getElementById('pano').style.display = 'block';
+     document.getElementById('loading_kr').style.display='none';
+      );" />
+
+  <layer name="skin_layer" zorder="3">
+    <layer name="skin_scroll_window">
+	  <layer name="skin_scroll_layer">
+		<layer name="skin_title" x="7" y="-7" css="calc:skin_settings.design_text_css + ' text-align:left; font-size:12px;'" />
+      </layer>
+    </layer>
+
+    <layer name="skin_control_bar">
+		<layer name="skin_control_bar_buttons">
+			<layer name="skin_btn_thumbs" x="5" y="0" ondown="" />
+			<layer name="skin_btn_thumbs_action" type="text" align="left" x="0" y="0" width="64" height="80" alpha="0" ondown="skin_showmap(false); skin_showthumbs();"/>
+			<layer name="skin_btn_hide" visible="false" />
+		</layer>
+	</layer>
+
+	<layer name="skin_loadingtext"
+           zorder="100"
+           type="container"
+           width="64"
+           height="64"
+           scale="1"
+           align="center"
+           x="0"
+           y="-5"
+           html="get:skin_settings.loadingtext"
+           visible="false"
+           bg="false"
+           enabled="false"
+           css="calc:skin_settings.design_text_css + ' text-align:center; font-style:italic; font-size:22px;'"
+           textshadow="get:skin_settings.design_text_shadow"
+           >
+
+     <layer name="lottie_loadingtext"
+            type="container"
+            width="100%"
+            height="100%"
+            keep="true"
+            align="center"
+            onloaded="load_lottie('lottie_loadingtext', 'artexb/plugins/animated_icon/27-loading.json');"
+            />
+
+    </layer>
+  </layer>
+
+  <layer name="skin_btn_prev_fs" x="0" alpha="0.6" enabled="true" onhover="" onout="" ondown.touch="" onup.touch="" />
+  <layer name="skin_btn_next_fs" x="0" alpha="0.6" enabled="true" onhover="" onout="" ondown.touch="" onup.touch="" />
+
+
+  <action name="skin_arrange_buttons" scope="local">
+		calc(show_selbuttons, 0);
+		calc(show_thumbutton, skin_settings.thumbs == true);
+		calc(show_mapbutton,  skin_settings.maps == true);
+		calc(show_gyrobutton, plugin[skin_gyro].isavailable == true AND (view.vlookatrange == 180 OR global.lpinfo.scene === xml.scene));
+		calc(show_vrbutton,   webvr.isavailable == true);
+		calc(show_fsbutton,   0);
+
+		set(lpos,6);
+		set(cpos,0);
+		if(show_gyrobutton, dec(cpos,20));
+		if(show_vrbutton OR plugin[webvr].mobilevr_fake_support == true, dec(cpos,24));
+		set(rpos,6);
+
+		calc(show_dirbuttons, 0 );
+
+		copy(layer[skin_btn_navi].visible, show_dirbuttons);
+
+		copy(layer[skin_btn_prev].visible, show_selbuttons);
+		copy(layer[skin_btn_next].visible, show_selbuttons);
+		if(show_selbuttons, inc(lpos,44); inc(rpos,44); );
+
+		copy(layer[skin_btn_thumbs].visible, show_thumbutton);
+		copy(layer[skin_btn_thumbs].x, lpos);
+		if(show_thumbutton, inc(lpos,40));
+
+		copy(layer[skin_btn_map].visible, show_mapbutton);
+		copy(layer[skin_btn_map].x, lpos);
+		if(show_mapbutton, inc(lpos,40));
+
+		if(show_dirbuttons,
+			copy(layer[skin_btn_navi].x, cpos);
+			inc(cpos,140);
+
+			set(layer[skin_btn_gyro].align, center);
+			copy(layer[skin_btn_gyro].visible, show_gyrobutton);
+			copy(layer[skin_btn_gyro].x, cpos);
+			if(show_gyrobutton, inc(cpos,48));
+
+			set(layer[skin_btn_vr].align, center);
+			copy(layer[skin_btn_vr].visible, show_vrbutton);
+			copy(layer[skin_btn_vr].x, cpos);
+			if(show_vrbutton, inc(cpos,80));
+		  ,
+			set(layer[skin_btn_gyro].align, left);
+			copy(layer[skin_btn_gyro].visible, show_gyrobutton);
+			copy(layer[skin_btn_gyro].x, lpos);
+			if(show_gyrobutton, inc(lpos,40));
+
+			set(layer[skin_btn_vr].align, left);
+			copy(layer[skin_btn_vr].visible, show_vrbutton);
+			copy(layer[skin_btn_vr].x, lpos);
+			if(show_vrbutton, inc(lpos,80));
+		);
+
+		copy(layer[skin_btn_hide].x, rpos);
+		inc(rpos,40);
+
+		copy(layer[skin_btn_fs].visible, show_fsbutton);
+		copy(layer[skin_btn_fs].x, rpos);
+		if(show_fsbutton, inc(rpos,40));
+	</action>
+
+
+
+
+</krpano>

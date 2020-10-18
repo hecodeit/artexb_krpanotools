@@ -68,3 +68,7 @@ xmltemplate_additional_file=xml/artexb/skin/artexb_skin_white.svg
 xmltemplate_additional_file=xml/artexb/skin/logo.svg
 xmltemplate_additional_file=xml/artexb/skin/logo_white.svg
 xmltemplate_additional_file=xml/artexb/skin/qr.jpg
+xmltemplate_additional_file=xml/artexb/plugins/lottie_light.min.js
+xmltemplate_additional_file=xml/artexb/plugins/lottie.xml
+xmltemplate_additional_file=xml/artexb/plugins/animated_icon/27-loading.json
+xmltemplate_additional_file=xml/artexb/plugins/animated_icon/video_play.json
