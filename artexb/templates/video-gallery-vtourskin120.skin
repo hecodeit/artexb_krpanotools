@@ -18,7 +18,8 @@ htmltemplate=html/embedpano_gallery.html
 
 xmltemplate=xml/video-gallery-vtour.xml
 xmltemplate_scene=xml/video_gallery_scenetemplate.xml
-xmltemplate_additional_file=xml/skin/gallery-vtourskin.xml
+xmltemplate_additional_file=xml/skin/vtourskin.xml
+xmltemplate_additional_file=xml/skin/galleryskin.xml
 
 xmltemplate_additional_file=xml/artexb/skin/artexb_skin_white.svg
 xmltemplate_additional_file=xml/artexb/plugins/lottie_light.min.js

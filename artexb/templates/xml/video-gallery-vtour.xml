@@ -11,6 +11,9 @@
         if(startactions !== null, startactions() );
     </action>
 
+    <events name="skin_events"
+  	        onxmlcomplete="skin_startup();" />
+
     <layer name="video_loadingtext"
            keep="true"
            zorder="2"
