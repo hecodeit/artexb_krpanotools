@@ -9,6 +9,8 @@
     <include url="%VIEWER%/artexb/plugins/popup.xml"/>
     <include url="%VIEWER%/artexb/plugins/lottie.xml"/>
 
+    <include url="%VIEWER%/project.xml" />
+
 
     <!-- startup action - load the first scene -->
     <action name="startup" autorun="onstart">
